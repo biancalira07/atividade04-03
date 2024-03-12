@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>>BIBLIOTECA</title>
+</head>
+<body>
+    <h2>Lista de Livros</h2>
+    <a href="{{ url_for('cadastrar') }}">Adicionar Novo Livro</a>
+    {% if livros.__len__()==0 %}
+    <p>Não há livros no registro</p>
+    {% endif %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Autor</th>
+                <th>Páginas</th>
+                <th>Gênero</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livro in livro %}
+            <tr>
+                <td>{{ livro.nome }}</td>
+                <td>{{livro.autor }}</td>
+                <td>{{ livro.paginas }}</td>
+                <td>{{livro.genero }}</td>
+           </tr>
+                <td><a href="{{ url_for('editar', chave=livro.id)}}">Editar</a></td>
+                <td><a href="{{ url_for('apagar', chave=livro.id)}}">Remover</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
